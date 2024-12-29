@@ -3,6 +3,8 @@
 # throughout this file
 import pygame
 from constants import *
+from player import *
+from circleshape import *
 
 def main():
     print("Starting asteroids!")
@@ -13,9 +15,14 @@ def main():
     dt = 0
     game_state = True
 
+    x = SCREEN_WIDTH / 2
+    y = SCREEN_HEIGHT / 2
+    player = Player(x,y,PLAYER_RADIUS)
+
     while (game_state == True):
-        screen.fill("black")
-        pygame.display.flip()   
+        screen.fill("black")  # Clear the screen before drawing
+        player.draw(screen)   # Draw the player on the screen
+        pygame.display.flip() # Update the screen after drawing
         dt = clock.tick(60)/1000
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
