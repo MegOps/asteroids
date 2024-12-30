@@ -24,6 +24,7 @@ def main():
         player.draw(screen)   # Draw the player on the screen
         pygame.display.flip() # Update the screen after drawing
         dt = clock.tick(60)/1000
+        player.update(dt)
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 return
