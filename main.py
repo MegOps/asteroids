@@ -7,6 +7,10 @@ from player import *
 from circleshape import *
 
 def main():
+    updatable  = pygame.sprite.Group()
+    drawable   = pygame.sprite.Group()
+    Player.containers = (updatable, drawable)
+
     print("Starting asteroids!")
     print(f"Screen width: {SCREEN_WIDTH}")
     print(f"Screen height: {SCREEN_HEIGHT}")
@@ -20,14 +24,22 @@ def main():
     player = Player(x,y,PLAYER_RADIUS)
 
     while (game_state == True):
-        screen.fill("black")  # Clear the screen before drawing
-        player.draw(screen)   # Draw the player on the screen
-        pygame.display.flip() # Update the screen after drawing
-        dt = clock.tick(60)/1000
-        player.update(dt)
+
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 return
+
+        for item in updatable:
+            item.update(dt)
+        
+
+        screen.fill("black")  # Clear the screen before drawing
+        for item in drawable:
+            player.draw(screen)   # Draw the player on the screen
+
+        pygame.display.flip() # Update the screen after drawing
+        dt = clock.tick(60)/1000
+        
 
 
 
