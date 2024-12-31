@@ -1,6 +1,4 @@
-# this allows us to use code from
-# the open-source pygame library
-# throughout this file
+import sys
 import pygame
 from constants import *
 from player import *
@@ -32,24 +30,28 @@ def main():
     y = SCREEN_HEIGHT / 2
     player = Player(x,y,PLAYER_RADIUS)
 
-    while (game_state == True):
-
+    while True:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 return
 
-        for item in updatable:
-            item.update(dt)
+        for obj in updatable:
+            obj.update(dt)
 
-        screen.fill("black")  # Clear the screen before drawing
+        for asteroid in asteroids:
+            if asteroid.collides_with(player):
+                print("Game over!")
+                sys.exit()
 
-        for item in drawable:
-            player.draw(screen)   # Draw the player on the screen
-            item.draw(screen)  # Draw each item in the drawable group
+        screen.fill("black")
 
-        pygame.display.flip() # Update the screen after drawing
-        dt = clock.tick(60)/1000
-        
+        for obj in drawable:
+            obj.draw(screen)
+
+        pygame.display.flip()
+
+        # limit the framerate to 60 FPS
+        dt = clock.tick(60) / 1000
 
 
 
