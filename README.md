@@ -1,5 +1,7 @@
 # Asteroid Blaster
 
+![asteroids](https://github.com/user-attachments/assets/0b83bf26-3432-4056-9882-f1887e75af8c)
+
 Welcome to the Asteroid Blaster project! This is a space-themed arcade game where players control a spaceship, dodging and destroying incoming asteroids.
 
 ## Description
